@@ -118,6 +118,7 @@ export const ListMovie = () => {
         switch (param) {
             case "asc": return setPosts(posts.sort((a, b) => a.year - b.year));
             case "desc": return setPosts(posts.sort((a, b) => b.year - a.year));
+            default: break;
         }
     }
 
@@ -165,35 +166,37 @@ export const ListMovie = () => {
                 <p>{detail.overview}</p>
             </Modal>
 
-            <Row between="xs">
-                <Col xs={24} lg={8} />
-                <Col xs={24} lg={8} />
-                <Col xs={24} lg={8}>
+            <div style={{ padding: "1rem 5rem", }}>
+                <Row between="xs">
+                    <Col xs={24} lg={8} />
+                    <Col xs={24} lg={8} />
+                    <Col xs={24} lg={8}>
 
-                    <Row>
-                        <Input.Search
-                            placeholder="search movies"
-                            onSearch={OnSearch}
-                            enterButton
-                            style={{ width: "200px", padding: "12px 0" }}
-                        />
-                    </Row>
-                    <Row >
-                        <Dropdown
-                            menu={{
-                                items,
-                                onClick,
-                            }}
-                        >
-                            <Button onClick={(e) => e.preventDefault()}>
-                                Filter Year by
-                            </Button>
-                        </Dropdown>
-                    </Row></Col>
-            </Row>
-            <div style={{ padding: "56px", }}>
-                
-            <h3 style={{textAlign:"left"}}>{onSearch ? "Search Result : ": "Discover" }</h3>
+                        <Row style={{ justifyContent: "flex-end", display: "flex" }}>
+                            <Input.Search
+                                placeholder="search movies"
+                                onSearch={OnSearch}
+                                enterButton
+                                style={{ width: "200px", padding: "12px 0" }}
+                            />
+                        </Row>
+                        <Row style={{ justifyContent: "flex-end", display: "flex" }} >
+                            <Dropdown
+                                menu={{
+                                    items,
+                                    onClick,
+                                }}
+                            >
+                                <Button onClick={(e) => e.preventDefault()}>
+                                    Filter Year by
+                                </Button>
+                            </Dropdown>
+                        </Row></Col>
+                </Row>
+            </div>
+            <div style={{ padding: "0 8rem", }}>
+
+                <h3 style={{ textAlign: "left" }}>{onSearch ? "Search Result : " : "Discover"}</h3>
                 <Row gutter={[24, 24]}
                     align="middle"
                     style={{
@@ -201,7 +204,7 @@ export const ListMovie = () => {
                         marginRight: "auto"
                     }}
                 >
-                    {posts.map((data, i) => {
+                    {posts && posts.map((data, i) => {
                         data.year = data.release_date.substring(0, 4);
                         if (data.vote_average === 0) {
                             data.vote_average = "no rating"
@@ -220,7 +223,8 @@ export const ListMovie = () => {
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                     transition={{ ease: "easeIn" }}
-                                    whileInView={{ opacity: [0, 1], x: [-100, 0] }}
+                                    animate={{ opacity: [0, 1], x: [-100, 0] }}
+                                    viewport={{ once: true }}
                                 >
                                     <Card
                                         hoverable

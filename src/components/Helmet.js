@@ -1,18 +1,14 @@
 
-import { Layout, Col, Row } from 'antd';
+import { Layout} from 'antd';
 
 const Helmet = () => {
   const { Header } = Layout
-
-
   return (
-    <Header style={{ color: 'whitesmoke', height: 'auto', backgroundColor: "#072541" }}>
-      <Row between="xs" >
-        <Col xs={24} lg={8}/> 
-        <Col xs={24} lg={8}><h1 className='helmet'>"Teh Movie Gallery"</h1></Col>
-        <Col xs={24} lg={8}>
-        </Col>
-      </Row>
+    <Header style={{ color: 'whitesmoke', height: 'auto', backgroundColor: "#072541", display:"flex", justifyContent:"space-between" }}>
+      <div></div>
+      <div><h1 className='helmet'>"Teh Movie Gallery"</h1></div>
+      <div><label>powered by moviedb</label></div>
+      
 
     </Header>
   )

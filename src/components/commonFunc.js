@@ -1,5 +1,5 @@
 import { mockupgenre } from "../db/mockupGenre"
-const genreAPIurl = "genre/movie/list?language=en"
+// const genreAPIurl = "genre/movie/list?language=en"
 
 export const shortdesc = (data) => {
     if (data.overview !== "") {
